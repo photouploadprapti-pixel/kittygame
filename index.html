@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kitty Poker Club — Deploy help</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      max-width: 36rem;
+      margin: 2rem auto;
+      padding: 0 1.25rem;
+      line-height: 1.5;
+      color: #1a0a2e;
+    }
+    code { background: #f0e8f8; padding: 0.15rem 0.4rem; border-radius: 4px; }
+    ol { padding-left: 1.25rem; }
+  </style>
+</head>
+<body>
+  <h1>Deploy the game folder, not this file</h1>
+  <p>Netlify needs <code>index.html</code> at the <strong>root of your upload</strong>. This repo keeps the game in <code>public/</code>.</p>
+  <ol>
+    <li>Open a terminal in this project</li>
+    <li>Run <code>npm run prepare:deploy</code></li>
+    <li>Open the <code>deploy</code> folder</li>
+    <li>Zip <strong>everything inside</strong> <code>deploy</code> (not the parent project folder)</li>
+    <li>Upload that zip to Netlify</li>
+  </ol>
+  <p>Or connect this repo to Netlify with Git — <code>netlify.toml</code> runs the build for you.</p>
+</body>
+</html>

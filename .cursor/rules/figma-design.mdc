@@ -1,0 +1,27 @@
+---
+description: Figma design reference for Kittys Poker Club HTML5 game
+alwaysApply: true
+---
+
+# Figma design (Kittys Poker Club)
+
+When building UI, assets, layout, colors, or screens for this HTML5 game, match this Figma file unless the user specifies otherwise.
+
+## Source file
+
+- **URL:** https://www.figma.com/design/Dzi2hymBou5Z8sTh0prfWi/Untitled?node-id=0-1&p=f
+- **File key:** `Dzi2hymBou5Z8sTh0prfWi`
+- **Default page/frame node:** `0:1` (URL: `node-id=0-1`)
+- **Machine-readable ref:** `design/figma-source.json`
+
+## Workflow
+
+1. Use Figma MCP (`get_metadata`, `get_screenshot`, `use_figma`) to read structure, tokens, and export assets before implementing.
+2. Prefer design tokens (colors, typography, spacing) from Figma over hardcoded guesses.
+3. Name exported assets to match Figma layer names where possible.
+4. If Figma MCP is unavailable, ask the user to connect Figma in Cursor Settings → MCP, or provide PNG/SVG exports of key frames.
+
+## Game stack (default unless user changes)
+
+- HTML5 + Canvas or Phaser 3 in this repo root
+- Assets under `assets/` mirroring Figma export groups

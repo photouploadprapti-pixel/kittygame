@@ -1,0 +1,16 @@
+# Git-connected Netlify: builds deploy/ then publishes it.
+# Drag-and-drop: run "npm run prepare:deploy" and upload deploy/ contents only.
+
+[build]
+  command = "npm run build:netlify"
+  publish = "deploy"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api"
+  status = 200
+  force = true

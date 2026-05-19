@@ -1,0 +1,299 @@
+/* Home — CSS scene (no baked UI image) + single menu card */
+
+#screen-lobby.screen-home {
+  --home-header: #4a0660;
+  --home-panel: #140028;
+  --home-net: rgba(180, 60, 255, 0.2);
+  --home-net-strong: rgba(200, 80, 255, 0.3);
+  --home-glow: #ff4ecd;
+
+  position: relative;
+  display: none;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: #0e0220;
+}
+
+#screen-lobby.screen-home.active {
+  display: flex;
+}
+
+/* Decorative background only — no menu artwork */
+#screen-lobby.screen-home .home-scene-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 90% 65% at 50% 38%, rgba(100, 35, 160, 0.32) 0%, transparent 55%),
+    radial-gradient(ellipse 120% 75% at 50% 0%, rgba(120, 50, 180, 0.25) 0%, transparent 52%),
+    linear-gradient(180deg, #3a1560 0%, #280848 28%, #1a0435 52%, #12002a 78%, #0e0220 100%);
+}
+
+/* Bridge gradient so the floor art fades into the scene */
+#screen-lobby.screen-home .home-scene-bg::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 55%;
+  z-index: 1;
+  background: linear-gradient(
+    0deg,
+    rgba(14, 2, 32, 0.15) 0%,
+    rgba(20, 0, 42, 0.55) 28%,
+    rgba(26, 4, 53, 0.82) 48%,
+    #1a0435 62%,
+    transparent 100%
+  );
+}
+
+#screen-lobby.screen-home .home-scene-bg::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 38%;
+  z-index: 0;
+  opacity: 0.65;
+  background:
+    repeating-linear-gradient(
+      60deg,
+      transparent,
+      transparent 17px,
+      var(--home-net) 17px,
+      var(--home-net-strong) 18px
+    ),
+    repeating-linear-gradient(
+      -60deg,
+      transparent,
+      transparent 17px,
+      rgba(140, 40, 220, 0.1) 17px,
+      rgba(160, 60, 240, 0.18) 18px
+    );
+  mask-image: linear-gradient(0deg, #000 0%, #000 40%, transparent 100%);
+  transform: perspective(480px) rotateX(48deg);
+  transform-origin: center bottom;
+}
+
+#screen-lobby.screen-home .home-bokeh {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 22% 18%, rgba(255, 200, 255, 0.65) 0 3px, transparent 4px),
+    radial-gradient(circle at 78% 14%, rgba(255, 130, 220, 0.5) 0 2px, transparent 3px),
+    radial-gradient(circle at 12% 55%, rgba(187, 38, 255, 0.45) 0 2px, transparent 3px),
+    radial-gradient(circle at 88% 48%, rgba(255, 78, 205, 0.4) 0 2px, transparent 3px),
+    radial-gradient(circle at 50% 72%, rgba(200, 120, 255, 0.35) 0 2px, transparent 3px);
+  opacity: 0.88;
+}
+
+/* Bottom cards — image + top fade so it merges with the purple scene */
+#screen-lobby.screen-home .home-floor-decor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  height: min(48vh, 400px);
+  min-height: 210px;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+#screen-lobby.screen-home .home-floor-decor::after {
+  content: '';
+  position: absolute;
+  left: -4%;
+  right: -4%;
+  bottom: -2%;
+  height: 100%;
+  background: url('/assets/home-bottom-decor.png') center bottom / 104% auto no-repeat;
+  filter: saturate(0.88) brightness(0.94);
+  mask-image: linear-gradient(
+    0deg,
+    #000 0%,
+    #000 55%,
+    rgba(0, 0, 0, 0.85) 72%,
+    rgba(0, 0, 0, 0.45) 86%,
+    transparent 100%
+  );
+}
+
+#screen-lobby.screen-home .home-floor-decor::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 72%;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    #1a0435 0%,
+    rgba(26, 4, 53, 0.95) 12%,
+    rgba(20, 0, 42, 0.75) 28%,
+    rgba(14, 2, 32, 0.45) 48%,
+    rgba(14, 2, 32, 0.12) 68%,
+    transparent 100%
+  );
+}
+
+#screen-lobby.screen-home .home-decor {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+#screen-lobby.screen-home .home-chip {
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+#screen-lobby.screen-home .home-chip--1 {
+  width: 46px;
+  height: 46px;
+  top: 22%;
+  left: 6%;
+  background: radial-gradient(circle at 35% 30%, #ececff, #8a7fd4 45%, #4a3a9e);
+}
+
+#screen-lobby.screen-home .home-chip--2 {
+  width: 34px;
+  height: 34px;
+  top: 32%;
+  right: 8%;
+  background: radial-gradient(circle at 35% 30%, #d8f0ff, #6eb5e8 50%, #3a7fc9);
+  filter: blur(0.5px);
+  opacity: 0.9;
+}
+
+#screen-lobby.screen-home .home-chip--3 {
+  width: 30px;
+  height: 30px;
+  bottom: 38%;
+  left: 10%;
+  background: radial-gradient(circle at 35% 30%, #e8c8ff, #a050d8 50%, #6b2fa8);
+  filter: blur(1px);
+  opacity: 0.75;
+}
+
+#screen-lobby.screen-home .home-chip--4 {
+  width: 38px;
+  height: 38px;
+  bottom: 36%;
+  right: 9%;
+  background: radial-gradient(circle at 35% 30%, #f0f8ff, #7ec8ff 50%, #4a8fd4);
+  opacity: 0.85;
+}
+
+#screen-lobby.screen-home .home-main {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.85rem 6vh;
+  min-height: 0;
+}
+
+/* Opaque card — hides nothing from a UI background image */
+#screen-lobby.screen-home .home-menu-shell {
+  width: min(88vw, 340px);
+  padding: 0 0 clamp(2rem, 8vh, 3rem);
+  border-radius: 22px;
+  background: var(--home-panel);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+#screen-lobby.screen-home .home-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.7rem 1rem;
+  margin-bottom: clamp(1.5rem, 6vh, 2.5rem);
+  background: var(--home-header);
+}
+
+#screen-lobby.screen-home .home-header img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+
+#screen-lobby.screen-home .home-header span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+#screen-lobby.screen-home .home-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  padding: 0 clamp(1.25rem, 5vw, 1.75rem);
+  gap: clamp(1rem, 4.2vh, 1.55rem);
+  box-sizing: border-box;
+}
+
+#screen-lobby.screen-home .home-menu-btn {
+  width: 100%;
+  min-height: 52px;
+  padding: 0.9rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  background: rgba(30, 4, 55, 0.65);
+  color: #fff;
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: clamp(0.95rem, 4vw, 1.1rem);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition:
+    background 0.14s ease,
+    box-shadow 0.14s ease,
+    border-color 0.14s ease,
+    transform 0.1s ease;
+}
+
+#screen-lobby.screen-home .home-menu-btn.is-glow,
+#screen-lobby.screen-home .home-menu-btn:active {
+  background: linear-gradient(180deg, #ff6ee8 0%, #ff4ecd 45%, #d42aff 100%);
+  border-color: rgba(255, 220, 255, 0.95);
+  box-shadow:
+    0 0 14px rgba(255, 100, 220, 1),
+    0 0 32px rgba(255, 78, 205, 0.85),
+    0 0 52px rgba(187, 38, 255, 0.5);
+  transform: scale(1.025);
+}
+
+#screen-lobby.screen-home .home-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,0 +1,323 @@
+// Kittys Poker Club — database schema
+// PostgreSQL · scalable for 500+ concurrent users
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  PLAYER
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum GameVariant {
+  TEXAS_HOLDEM
+  PLO4
+}
+
+enum TableVisibility {
+  PUBLIC
+  PRIVATE
+}
+
+enum TableStatus {
+  OPEN
+  RUNNING
+  PAUSED
+  CLOSED
+}
+
+enum HandPhase {
+  WAITING
+  PREFLOP
+  FLOP
+  TURN
+  RIVER
+  SHOWDOWN
+  COMPLETE
+}
+
+enum PlayerActionType {
+  FOLD
+  CHECK
+  CALL
+  BET
+  RAISE
+  ALL_IN
+}
+
+enum CreditTransactionType {
+  DEPOSIT
+  WITHDRAWAL
+  BUY_IN
+  CASH_OUT
+  TOURNAMENT_BUY_IN
+  TOURNAMENT_PAYOUT
+  ADMIN_ADJUSTMENT
+  REFUND
+}
+
+enum PaymentProvider {
+  PAYPAL
+  SUMUP
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+enum TournamentType {
+  SNG
+  MTT
+}
+
+enum TournamentStatus {
+  DRAFT
+  REGISTERING
+  RUNNING
+  PAUSED
+  COMPLETED
+  CANCELLED
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  emailVerified Boolean   @default(false)
+  passwordHash  String?
+  displayName   String?
+  role          UserRole  @default(PLAYER)
+  isBanned      Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  wallet              Wallet?
+  sessions            Session[]
+  hostedTables        PokerTable[]           @relation("TableHost")
+  tableSeats          TableSeat[]
+  handActions         HandAction[]
+  creditTransactions  CreditTransaction[]
+  payments            Payment[]
+  tournamentRegs      TournamentRegistration[]
+  hostedTournaments   Tournament[]           @relation("TournamentHost")
+  adminAuditLogs      AdminAuditLog[]        @relation("AdminActor")
+
+  @@index([email])
+  @@index([role])
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  tokenHash String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  ipAddress String?
+  userAgent String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model Wallet {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  balance   Int      @default(0) // credits ($1 = 1 credit)
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model CreditTransaction {
+  id          String                @id @default(cuid())
+  userId      String
+  amount      Int                   // positive = credit in, negative = out
+  type        CreditTransactionType
+  referenceId String?
+  note        String?
+  createdAt   DateTime              @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@index([type])
+}
+
+model Payment {
+  id                String          @id @default(cuid())
+  userId            String
+  provider          PaymentProvider
+  providerPaymentId String?
+  amountUsd         Decimal         @db.Decimal(10, 2)
+  creditsGranted    Int
+  status            PaymentStatus   @default(PENDING)
+  metadata          Json?
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([status])
+}
+
+model PokerTable {
+  id            String          @id @default(cuid())
+  variant       GameVariant
+  visibility    TableVisibility
+  status        TableStatus     @default(OPEN)
+  hostUserId    String?
+  inviteCode    String?         @unique
+  name          String?
+  maxSeats      Int             @default(9)
+  smallBlind    Int
+  bigBlind      Int
+  minBuyIn      Int
+  maxBuyIn      Int
+  tournamentId  String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  host       User?        @relation("TableHost", fields: [hostUserId], references: [id])
+  tournament Tournament?  @relation(fields: [tournamentId], references: [id])
+  seats      TableSeat[]
+  hands      Hand[]
+
+  @@index([visibility, status])
+  @@index([tournamentId])
+  @@index([inviteCode])
+}
+
+model TableSeat {
+  id           String   @id @default(cuid())
+  tableId      String
+  seatIndex    Int
+  userId       String?
+  stack        Int      @default(0)
+  isSittingOut Boolean  @default(false)
+  joinedAt     DateTime @default(now())
+
+  table PokerTable @relation(fields: [tableId], references: [id], onDelete: Cascade)
+  user  User?      @relation(fields: [userId], references: [id])
+
+  @@unique([tableId, seatIndex])
+  @@unique([tableId, userId])
+  @@index([userId])
+}
+
+model Hand {
+  id              String    @id @default(cuid())
+  tableId         String
+  handNumber      Int
+  dealerSeatIndex Int
+  boardCards      String[]  @default([])
+  potTotal        Int       @default(0)
+  phase           HandPhase @default(WAITING)
+  startedAt       DateTime  @default(now())
+  endedAt         DateTime?
+
+  table       PokerTable       @relation(fields: [tableId], references: [id], onDelete: Cascade)
+  actions     HandAction[]
+  playerHands HandPlayerCards[]
+
+  @@unique([tableId, handNumber])
+  @@index([tableId, startedAt])
+}
+
+model HandPlayerCards {
+  id       String @id @default(cuid())
+  handId   String
+  userId   String
+  cards    String[] // encrypted at app layer for storage
+  revealed Boolean @default(false)
+
+  hand Hand @relation(fields: [handId], references: [id], onDelete: Cascade)
+
+  @@unique([handId, userId])
+}
+
+model HandAction {
+  id        String           @id @default(cuid())
+  handId    String
+  userId    String
+  seatIndex Int
+  action    PlayerActionType
+  amount    Int              @default(0)
+  street    HandPhase
+  createdAt DateTime         @default(now())
+
+  hand Hand @relation(fields: [handId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([handId])
+}
+
+model Tournament {
+  id              String           @id @default(cuid())
+  name            String
+  variant         GameVariant
+  type            TournamentType
+  visibility      TableVisibility
+  status          TournamentStatus @default(DRAFT)
+  hostUserId      String?
+  buyIn           Int
+  fee             Int              @default(0)
+  startingStack   Int
+  maxPlayers      Int
+  playersPerTable Int              @default(9)
+  blindStructure  Json
+  prizeStructure  Json
+  scheduledStartAt DateTime?
+  startedAt       DateTime?
+  completedAt     DateTime?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  host          User?                      @relation("TournamentHost", fields: [hostUserId], references: [id])
+  registrations TournamentRegistration[]
+  tables        PokerTable[]
+
+  @@index([status, visibility])
+  @@index([scheduledStartAt])
+}
+
+model TournamentRegistration {
+  id           String    @id @default(cuid())
+  tournamentId String
+  userId       String
+  stack        Int
+  finishPlace  Int?
+  eliminatedAt DateTime?
+  registeredAt DateTime  @default(now())
+
+  tournament Tournament @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
+  user       User       @relation(fields: [userId], references: [id])
+
+  @@unique([tournamentId, userId])
+  @@index([tournamentId])
+}
+
+model AdminAuditLog {
+  id         String   @id @default(cuid())
+  adminId    String
+  action     String
+  targetType String?
+  targetId   String?
+  metadata   Json?
+  createdAt  DateTime @default(now())
+
+  admin User @relation("AdminActor", fields: [adminId], references: [id])
+
+  @@index([adminId, createdAt])
+}

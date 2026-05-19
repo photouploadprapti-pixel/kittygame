@@ -1,0 +1,30 @@
+{
+  "name": "kittys-poker-club",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/server/demo-server.ts",
+    "start": "node dist/server/demo-server.js",
+    "build": "tsc",
+    "build:netlify": "node scripts/netlify-build.mjs",
+    "prepare:deploy": "node scripts/prepare-deploy.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.8.2"
+  },
+  "devDependencies": {
+    "@netlify/functions": "^3.1.10",
+    "@types/node": "^22.15.21",
+    "prisma": "^6.8.2",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.4"
+  }
+}

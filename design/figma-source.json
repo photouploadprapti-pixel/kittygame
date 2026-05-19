@@ -1,0 +1,12 @@
+{
+  "project": "Kittys Poker Club",
+  "purpose": "HTML5 game — visual source of truth",
+  "figma": {
+    "url": "https://www.figma.com/design/Dzi2hymBou5Z8sTh0prfWi/Untitled?node-id=0-1&p=f",
+    "fileKey": "Dzi2hymBou5Z8sTh0prfWi",
+    "fileName": "Untitled",
+    "defaultNodeId": "0:1",
+    "defaultNodeIdUrl": "0-1"
+  },
+  "notes": "Inspect via Figma MCP (get_metadata, get_screenshot, use_figma) once authenticated in Cursor."
+}

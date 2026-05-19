@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Kittys Poker Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/game.css" />
+  <link rel="stylesheet" href="/css/auth.css" />
+  <link rel="stylesheet" href="/css/splash-loading.css" />
+  <link rel="stylesheet" href="/css/auth-forms.css?v=4" />
+  <link rel="stylesheet" href="/css/auth-login.css?v=3" />
+  <link rel="stylesheet" href="/css/auth-signup.css?v=1" />
+  <link rel="stylesheet" href="/css/auth-reset.css?v=1" />
+  <link rel="stylesheet" href="/css/auth-verify.css?v=1" />
+  <link rel="stylesheet" href="/css/home.css?v=8" />
+</head>
+<body>
+  <div id="app">
+    <section id="screen-splash" class="auth-screen auth-screen--splash active">
+      <div class="auth-bokeh" aria-hidden="true"></div>
+      <div class="auth-stage">
+        <img src="/assets/mascot-splash.png?v=3" alt="" class="auth-mascot" />
+        <h1 class="auth-title-block">
+          <span>Kitty Poker</span>
+          <span>Club</span>
+        </h1>
+      </div>
+    </section>
+
+    <section id="screen-loading" class="auth-screen auth-screen--loading">
+      <div class="auth-bokeh" aria-hidden="true"></div>
+      <div class="auth-stage">
+        <img src="/assets/mascot-loading.png?v=3" alt="" class="auth-mascot" />
+        <p class="auth-loading-label">Loading ...</p>
+        <div class="auth-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="auth-progress-fill" id="loading-progress"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen-login" class="auth-screen auth-screen--login">
+      <div class="login-scene-bg" aria-hidden="true"></div>
+      <div class="auth-bokeh login-bokeh" aria-hidden="true"></div>
+      <div class="login-center">
+        <div class="auth-form-panel">
+        <header class="auth-header-banner">
+          <img src="/assets/mascot-splash.png?v=3" alt="" width="38" height="38" />
+          <span>Kitty Poker Club</span>
+        </header>
+        <div class="auth-form-body">
+          <h2 class="auth-form-title">Welcome Back</h2>
+        <div class="auth-error" id="login-error" role="alert"></div>
+        <form id="form-login" novalidate>
+          <div class="auth-field">
+            <label for="login-email">Email</label>
+            <input class="auth-input" type="email" id="login-email" name="email" autocomplete="email" required placeholder="you@example.com" />
+          </div>
+          <div class="auth-field">
+            <div class="auth-field-row">
+              <label for="login-password">Password</label>
+              <button type="button" class="auth-link" id="btn-forgot-password">Forget Password</button>
+            </div>
+            <input class="auth-input" type="password" id="login-password" name="password" autocomplete="current-password" required placeholder="••••••••" />
+          </div>
+          <button type="submit" class="auth-btn-submit" id="btn-login">Log in</button>
+          </form>
+          <footer class="auth-footer auth-footer--signup">
+            <p class="auth-footer-line">Don't have an account?</p>
+            <button type="button" class="auth-footer-cta" id="btn-go-signup">Sign Up</button>
+          </footer>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen-signup" class="auth-screen auth-screen--signup">
+      <div class="signup-scene-bg" aria-hidden="true"></div>
+      <div class="auth-bokeh signup-bokeh" aria-hidden="true"></div>
+      <div class="signup-center">
+        <div class="auth-form-panel">
+          <header class="auth-header-banner">
+            <img src="/assets/mascot-splash.png?v=3" alt="" width="38" height="38" />
+            <span>Kitty Poker Club</span>
+          </header>
+          <div class="auth-form-body">
+            <h2 class="auth-form-title">Create Your Account</h2>
+            <div class="auth-error" id="signup-error" role="alert"></div>
+            <form id="form-signup" novalidate>
+              <div class="auth-field">
+                <label for="signup-username">Username</label>
+                <input class="auth-input" type="text" id="signup-username" name="username" autocomplete="username" required placeholder="Your username" />
+              </div>
+              <div class="auth-field">
+                <label for="signup-email">Email</label>
+                <input class="auth-input" type="email" id="signup-email" name="email" autocomplete="email" required placeholder="you@example.com" />
+              </div>
+              <div class="auth-field">
+                <label for="signup-password">Password</label>
+                <input class="auth-input" type="password" id="signup-password" name="password" autocomplete="new-password" required minlength="6" placeholder="••••••••" />
+              </div>
+              <div class="auth-field">
+                <label for="signup-password-confirm">Confirm Password</label>
+                <input class="auth-input" type="password" id="signup-password-confirm" autocomplete="new-password" required minlength="6" placeholder="••••••••" />
+              </div>
+              <label class="auth-checkbox-row">
+                <input type="checkbox" id="signup-terms" required />
+                <span>I agree to term of service &amp; privacy Policy</span>
+              </label>
+              <button type="submit" class="auth-btn-submit" id="btn-signup">Sign Up</button>
+            </form>
+            <footer class="auth-footer auth-footer--login">
+              <span>Already have an account? <button type="button" class="auth-footer-link" id="btn-go-login">login</button></span>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen-verify" class="auth-screen auth-screen--verify">
+      <div class="verify-scene-bg" aria-hidden="true"></div>
+      <div class="auth-bokeh verify-bokeh" aria-hidden="true"></div>
+      <div class="verify-center">
+        <div class="auth-form-panel">
+          <header class="auth-header-banner">
+            <img src="/assets/mascot-splash.png?v=3" alt="" width="38" height="38" />
+            <span>Kitty Poker Club</span>
+          </header>
+          <div class="auth-form-body">
+            <h2 class="auth-form-title">Verify Your Email</h2>
+            <p class="auth-form-desc">
+              We have sent a 4-digit verification code to <strong id="verify-email-display"></strong>.
+              Please enter it below:
+            </p>
+            <div class="auth-error" id="verify-error" role="alert"></div>
+            <form id="form-verify" novalidate>
+              <div class="auth-otp-row" id="otp-inputs">
+                <input class="auth-otp-digit" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 1" data-otp="0" />
+                <input class="auth-otp-digit" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 2" data-otp="1" />
+                <input class="auth-otp-digit" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 3" data-otp="2" />
+                <input class="auth-otp-digit" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 4" data-otp="3" />
+              </div>
+              <p class="auth-resend">
+                <button type="button" id="btn-resend-code" disabled>Resend Code (<span id="resend-timer">0:45</span>)</button>
+              </p>
+              <button type="submit" class="auth-btn-submit" id="btn-verify">Verify</button>
+            </form>
+            <footer class="auth-footer auth-footer--back">
+              <button type="button" class="auth-footer-back" id="btn-verify-back-login">Back to Login</button>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen-reset" class="auth-screen auth-screen--reset">
+      <div class="reset-scene-bg" aria-hidden="true"></div>
+      <div class="auth-bokeh reset-bokeh" aria-hidden="true"></div>
+      <div class="reset-center">
+        <div class="auth-form-panel">
+          <header class="auth-header-banner">
+            <img src="/assets/mascot-splash.png?v=3" alt="" width="38" height="38" />
+            <span>Kitty Poker Club</span>
+          </header>
+          <div class="auth-form-body">
+            <h2 class="auth-form-title">Rest Your Password</h2>
+            <p class="auth-form-desc">
+              Enter your email below and we'll send you instruction for creating a new password.
+            </p>
+            <div class="auth-error" id="reset-error" role="alert"></div>
+            <form id="form-reset" novalidate>
+              <div class="auth-field">
+                <label for="reset-email">Email</label>
+                <input class="auth-input" type="email" id="reset-email" name="email" autocomplete="email" required placeholder="you@example.com" />
+              </div>
+              <button type="submit" class="auth-btn-submit" id="btn-reset">Send Rest Link</button>
+            </form>
+            <footer class="auth-footer auth-footer--back">
+              <button type="button" class="auth-footer-back" id="btn-reset-back-login">Remembered your password?</button>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen-lobby" class="screen screen-home">
+      <div class="home-scene-bg" aria-hidden="true"></div>
+      <div class="home-bokeh" aria-hidden="true"></div>
+      <div class="home-floor-decor" aria-hidden="true"></div>
+      <div class="home-decor" aria-hidden="true">
+        <span class="home-chip home-chip--1"></span>
+        <span class="home-chip home-chip--2"></span>
+        <span class="home-chip home-chip--3"></span>
+        <span class="home-chip home-chip--4"></span>
+      </div>
+      <main class="home-main">
+        <div class="home-menu-shell">
+          <header class="home-header">
+            <img src="/assets/mascot-splash.png?v=3" alt="" width="38" height="38" />
+            <span>Kitty Poker Club</span>
+          </header>
+          <nav class="home-menu" aria-label="Main menu">
+            <button type="button" class="home-menu-btn" id="btn-home-play">Play</button>
+            <button type="button" class="home-menu-btn" id="btn-home-settings">Setting</button>
+            <button type="button" class="home-menu-btn" id="btn-home-exit">Exit</button>
+          </nav>
+        </div>
+      </main>
+      <span class="home-sr-only" id="lobby-balance" aria-hidden="true">1,000</span>
+      <span class="home-sr-only" id="lobby-seated" aria-hidden="true">0/9 seated</span>
+    </section>
+
+    <section id="screen-table" class="screen">
+      <header class="table-topbar">
+        <button type="button" class="btn-icon" id="btn-back" aria-label="Back">←</button>
+        <div class="table-info">
+          <span id="table-name">Kitty's Table #1</span>
+          <span class="blinds" id="table-blinds">5 / 10</span>
+        </div>
+        <button type="button" class="btn-icon" id="btn-menu" aria-label="Menu">☰</button>
+      </header>
+
+      <div class="table-stage">
+        <div class="poker-table">
+          <div class="table-rail"></div>
+          <div class="table-felt">
+            <div class="pot-area">
+              <div class="pot-label">Total Pot</div>
+              <div class="pot-amount" id="pot-total">0</div>
+            </div>
+            <div class="board" id="board"></div>
+            <div class="seats-ring" id="seats-ring"></div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="action-bar" id="action-bar">
+        <div class="action-meta">
+          <span id="action-hint">Take a seat to play</span>
+        </div>
+        <div class="action-buttons" id="action-buttons">
+          <button type="button" class="btn-fold" data-action="FOLD" disabled>Fold</button>
+          <button type="button" class="btn-check" data-action="CHECK" disabled>Check</button>
+          <button type="button" class="btn-call" data-action="CALL" disabled>Call</button>
+          <button type="button" class="btn-raise" data-action="RAISE" disabled>Raise</button>
+        </div>
+        <div class="raise-panel hidden" id="raise-panel">
+          <input type="range" id="raise-slider" min="0" max="1000" value="0" />
+          <span id="raise-value">0</span>
+          <button type="button" class="btn-primary btn-confirm-raise" id="btn-confirm-raise">Raise</button>
+        </div>
+      </footer>
+
+      <div class="hand-controls">
+        <button type="button" class="btn-deal" id="btn-start-hand">Deal Hand</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast hidden" id="toast"></div>
+
+  <script type="module" src="/js/auth-flow.js"></script>
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

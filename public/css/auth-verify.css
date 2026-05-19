@@ -1,0 +1,281 @@
+/* Verify email — matches login/signup card + net reference */
+
+#screen-verify.auth-screen--verify {
+  --verify-header: #4a0660;
+  --verify-panel: #1c003a;
+  --verify-field: #bfbebe;
+  --verify-btn: #616161;
+  --verify-net: rgba(180, 60, 255, 0.22);
+  --verify-net-strong: rgba(200, 80, 255, 0.32);
+
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: 1.25rem 0.65rem;
+  box-sizing: border-box;
+  background: transparent;
+}
+
+#screen-verify.auth-screen--verify.active {
+  display: flex;
+}
+
+#screen-verify.auth-screen--verify::before,
+#screen-verify.auth-screen--verify::after {
+  display: none;
+}
+
+#screen-verify .verify-scene-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 120% 70% at 50% 0%, rgba(120, 50, 180, 0.28) 0%, transparent 52%),
+    radial-gradient(ellipse 70% 50% at 12% 28%, rgba(187, 38, 255, 0.14) 0%, transparent 48%),
+    linear-gradient(180deg, #3a1560 0%, #280848 28%, #1a0435 58%, #0e0220 100%);
+}
+
+#screen-verify .verify-scene-bg::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 48%;
+  background:
+    linear-gradient(0deg, rgba(14, 2, 32, 0.35) 0%, transparent 42%),
+    repeating-linear-gradient(
+      60deg,
+      transparent,
+      transparent 17px,
+      var(--verify-net) 17px,
+      var(--verify-net-strong) 18px
+    ),
+    repeating-linear-gradient(
+      -60deg,
+      transparent,
+      transparent 17px,
+      rgba(140, 40, 220, 0.14) 17px,
+      rgba(160, 60, 240, 0.24) 18px
+    );
+  mask-image: linear-gradient(0deg, #000 0%, #000 50%, transparent 100%);
+}
+
+#screen-verify .verify-bokeh {
+  z-index: 1;
+  background-image:
+    radial-gradient(circle at 25% 10%, rgba(255, 200, 255, 0.75) 0 2px, transparent 3px),
+    radial-gradient(circle at 72% 14%, rgba(255, 130, 220, 0.6) 0 2px, transparent 3px),
+    radial-gradient(circle at 48% 32%, rgba(200, 120, 255, 0.5) 0 1.5px, transparent 2.5px),
+    radial-gradient(circle at 14% 48%, rgba(255, 100, 200, 0.45) 0 2px, transparent 3px),
+    radial-gradient(circle at 86% 46%, rgba(180, 80, 255, 0.55) 0 2px, transparent 3px);
+  opacity: 0.9;
+}
+
+#screen-verify .verify-center {
+  position: relative;
+  z-index: 2;
+  width: min(92vw, 392px);
+  box-sizing: border-box;
+  padding: 0 0.72rem;
+  background:
+    repeating-linear-gradient(
+      60deg,
+      transparent,
+      transparent 16px,
+      var(--verify-net) 16px,
+      var(--verify-net-strong) 17px
+    ),
+    repeating-linear-gradient(
+      -60deg,
+      transparent,
+      transparent 16px,
+      rgba(140, 40, 220, 0.12) 16px,
+      rgba(160, 60, 240, 0.2) 17px
+    );
+  box-shadow: 0 14px 42px rgba(0, 0, 0, 0.42);
+}
+
+#screen-verify .auth-form-panel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--verify-panel);
+}
+
+#screen-verify .auth-form-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.45rem 1.2rem 1.55rem;
+  background: var(--verify-panel);
+}
+
+#screen-verify .auth-header-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.72rem 0.65rem;
+  background: var(--verify-header);
+  border: none;
+  box-sizing: border-box;
+}
+
+#screen-verify .auth-header-banner img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+#screen-verify .auth-header-banner span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+#screen-verify .auth-form-title {
+  width: 100%;
+  text-align: center;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.75rem;
+  line-height: 1.2;
+}
+
+#screen-verify .auth-form-desc {
+  width: 100%;
+  margin: 0 0 1.1rem;
+  font-size: 0.78rem;
+  font-weight: 400;
+  line-height: 1.45;
+  text-align: center;
+  color: #fff;
+}
+
+#screen-verify .auth-form-desc strong {
+  font-weight: 600;
+  color: #fff;
+}
+
+#screen-verify .auth-otp-row {
+  display: flex;
+  gap: 0.65rem;
+  justify-content: center;
+  margin: 0 0 0.85rem;
+  width: 100%;
+}
+
+#screen-verify .auth-otp-digit {
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  text-align: center;
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 6px;
+  background: var(--verify-field);
+  color: #fff;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+#screen-verify .auth-otp-digit:focus {
+  outline: none;
+  background: #d0d0d0;
+}
+
+#screen-verify .auth-resend {
+  margin: 0 0 1rem;
+  text-align: center;
+  font-size: 0.72rem;
+  color: #fff;
+}
+
+#screen-verify .auth-resend button {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: inherit;
+  font-weight: 400;
+  color: #fff;
+  cursor: pointer;
+}
+
+#screen-verify .auth-resend button:disabled {
+  opacity: 0.85;
+  cursor: default;
+}
+
+#screen-verify .auth-resend button:not(:disabled):hover {
+  color: #f0d4ff;
+}
+
+#screen-verify form#form-verify {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#screen-verify button.auth-btn-submit {
+  width: 100%;
+  height: 46px;
+  margin-top: 0.05rem;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: var(--verify-btn);
+  color: #fff;
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#screen-verify button.auth-btn-submit:not(:disabled):hover {
+  background: #757575;
+}
+
+#screen-verify .auth-footer--back {
+  margin-top: 1.25rem;
+  padding: 0;
+  text-align: center;
+}
+
+#screen-verify .auth-footer-back {
+  background: none;
+  border: none;
+  padding: 0.1rem 0.5rem;
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+#screen-verify .auth-footer-back:hover {
+  color: #f0d4ff;
+}
+
+#screen-verify .auth-error.visible {
+  margin-bottom: 0.7rem;
+  font-size: 0.82rem;
+  text-align: center;
+  width: 100%;
+}
