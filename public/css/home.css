@@ -1,6 +1,7 @@
 /* Home — CSS scene (no baked UI image) + single menu card */
 
-#screen-lobby.screen-home {
+#screen-lobby.screen-home,
+#screen-hub.screen-hub {
   --home-header: #4a0660;
   --home-panel: #140028;
   --home-net: rgba(180, 60, 255, 0.2);
@@ -15,12 +16,14 @@
   background: #0e0220;
 }
 
-#screen-lobby.screen-home.active {
+#screen-lobby.screen-home.active,
+#screen-hub.screen-hub.active {
   display: flex;
 }
 
-/* Decorative background only — no menu artwork */
-#screen-lobby.screen-home .home-scene-bg {
+/* Decorative background — shared by main menu and lobby hub */
+#screen-lobby.screen-home .home-scene-bg,
+#screen-hub.screen-hub .home-scene-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -32,7 +35,8 @@
 }
 
 /* Bridge gradient so the floor art fades into the scene */
-#screen-lobby.screen-home .home-scene-bg::before {
+#screen-lobby.screen-home .home-scene-bg::before,
+#screen-hub.screen-hub .home-scene-bg::before {
   content: '';
   position: absolute;
   left: 0;
@@ -50,7 +54,8 @@
   );
 }
 
-#screen-lobby.screen-home .home-scene-bg::after {
+#screen-lobby.screen-home .home-scene-bg::after,
+#screen-hub.screen-hub .home-scene-bg::after {
   content: '';
   position: absolute;
   left: 0;
@@ -79,7 +84,8 @@
   transform-origin: center bottom;
 }
 
-#screen-lobby.screen-home .home-bokeh {
+#screen-lobby.screen-home .home-bokeh,
+#screen-hub.screen-hub .home-bokeh {
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -94,7 +100,8 @@
 }
 
 /* Bottom cards — image + top fade so it merges with the purple scene */
-#screen-lobby.screen-home .home-floor-decor {
+#screen-lobby.screen-home .home-floor-decor,
+#screen-hub.screen-hub .home-floor-decor {
   position: absolute;
   left: 0;
   right: 0;
@@ -106,7 +113,8 @@
   overflow: hidden;
 }
 
-#screen-lobby.screen-home .home-floor-decor::after {
+#screen-lobby.screen-home .home-floor-decor::after,
+#screen-hub.screen-hub .home-floor-decor::after {
   content: '';
   position: absolute;
   left: -4%;
@@ -125,7 +133,8 @@
   );
 }
 
-#screen-lobby.screen-home .home-floor-decor::before {
+#screen-lobby.screen-home .home-floor-decor::before,
+#screen-hub.screen-hub .home-floor-decor::before {
   content: '';
   position: absolute;
   left: 0;
@@ -144,7 +153,8 @@
   );
 }
 
-#screen-lobby.screen-home .home-decor {
+#screen-lobby.screen-home .home-decor,
+#screen-hub.screen-hub .home-decor {
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -152,14 +162,16 @@
   overflow: hidden;
 }
 
-#screen-lobby.screen-home .home-chip {
+#screen-lobby.screen-home .home-chip,
+#screen-hub.screen-hub .home-chip {
   position: absolute;
   border-radius: 50%;
   border: 3px solid rgba(255, 255, 255, 0.4);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
 }
 
-#screen-lobby.screen-home .home-chip--1 {
+#screen-lobby.screen-home .home-chip--1,
+#screen-hub.screen-hub .home-chip--1 {
   width: 46px;
   height: 46px;
   top: 22%;
@@ -167,7 +179,8 @@
   background: radial-gradient(circle at 35% 30%, #ececff, #8a7fd4 45%, #4a3a9e);
 }
 
-#screen-lobby.screen-home .home-chip--2 {
+#screen-lobby.screen-home .home-chip--2,
+#screen-hub.screen-hub .home-chip--2 {
   width: 34px;
   height: 34px;
   top: 32%;
@@ -177,7 +190,8 @@
   opacity: 0.9;
 }
 
-#screen-lobby.screen-home .home-chip--3 {
+#screen-lobby.screen-home .home-chip--3,
+#screen-hub.screen-hub .home-chip--3 {
   width: 30px;
   height: 30px;
   bottom: 38%;
@@ -187,7 +201,8 @@
   opacity: 0.75;
 }
 
-#screen-lobby.screen-home .home-chip--4 {
+#screen-lobby.screen-home .home-chip--4,
+#screen-hub.screen-hub .home-chip--4 {
   width: 38px;
   height: 38px;
   bottom: 36%;

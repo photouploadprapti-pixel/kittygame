@@ -1,0 +1,274 @@
+/* Table waiting room — pre-game lobby */
+
+#screen-waiting-room.screen-waiting-room {
+  --wr-header: #5a0a78;
+  --wr-banner: #7b1fa8;
+  --wr-banner-dark: #5c1680;
+  --wr-nav: #120020;
+  --wr-chat: #4a9fd8;
+
+  position: relative;
+  display: none;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: #0e0220;
+}
+
+#screen-waiting-room.screen-waiting-room.active {
+  display: flex;
+}
+
+#screen-waiting-room .wr-layout {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+#screen-waiting-room .wr-topbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.65rem;
+  background: var(--wr-header);
+  flex-shrink: 0;
+}
+
+#screen-waiting-room .wr-topbar-back,
+#screen-waiting-room .wr-topbar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+#screen-waiting-room .wr-topbar-back {
+  width: 36px;
+  height: 36px;
+  font-size: 1.35rem;
+}
+
+#screen-waiting-room .wr-topbar-spacer {
+  flex: 1;
+}
+
+#screen-waiting-room .wr-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+#screen-waiting-room .wr-topbar-icon--chat svg {
+  width: 22px;
+  height: 22px;
+  fill: #fff;
+}
+
+#screen-waiting-room .wr-topbar-close {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: #e74c3c;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#screen-waiting-room .wr-game-banner {
+  padding: 0.55rem 0.75rem;
+  text-align: center;
+  background: var(--wr-banner);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+#screen-waiting-room .wr-player-count {
+  padding: 0.45rem 0.75rem;
+  text-align: center;
+  background: var(--wr-banner-dark);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  flex-shrink: 0;
+}
+
+#screen-waiting-room .wr-players {
+  flex-shrink: 0;
+  background: rgba(20, 4, 38, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+#screen-waiting-room .wr-player-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.6rem 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#screen-waiting-room .wr-player-row:last-child {
+  border-bottom: none;
+}
+
+#screen-waiting-room .wr-player-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+#screen-waiting-room .wr-player-avatar svg {
+  width: 28px;
+  height: 28px;
+  fill: #9aa0a8;
+}
+
+#screen-waiting-room .wr-player-info {
+  flex: 1;
+  min-width: 0;
+}
+
+#screen-waiting-room .wr-player-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.25;
+}
+
+#screen-waiting-room .wr-player-username {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+#screen-waiting-room .wr-player-chips {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+}
+
+#screen-waiting-room .wr-chat-area {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0.75rem 0.85rem 1rem;
+  overflow: hidden;
+}
+
+#screen-waiting-room .wr-chat-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, #1a0435 0%, #0a0018 55%, #050010 100%);
+}
+
+#screen-waiting-room .wr-chat-scene::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 22% 35%, rgba(200, 80, 255, 0.55) 0 18px, transparent 20px),
+    radial-gradient(circle at 68% 28%, rgba(255, 100, 200, 0.45) 0 14px, transparent 16px),
+    radial-gradient(circle at 45% 62%, rgba(140, 50, 220, 0.5) 0 22px, transparent 24px),
+    radial-gradient(circle at 78% 58%, rgba(255, 78, 205, 0.4) 0 12px, transparent 14px),
+    radial-gradient(circle at 15% 70%, rgba(180, 60, 255, 0.35) 0 10px, transparent 12px);
+  filter: blur(1px);
+  opacity: 0.95;
+}
+
+#screen-waiting-room .wr-chat-btn {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: none;
+  border-radius: 10px;
+  background: var(--wr-chat);
+  color: #fff;
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+#screen-waiting-room .wr-bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 0.5rem 0.5rem 0.65rem;
+  background: var(--wr-nav);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+}
+
+#screen-waiting-room .wr-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  min-width: 72px;
+}
+
+#screen-waiting-room .wr-nav-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#screen-waiting-room .wr-nav-icon--home {
+  background: linear-gradient(180deg, #5eb8ff 0%, #2a7fd4 100%);
+}
+
+#screen-waiting-room .wr-nav-icon--lobby {
+  background: transparent;
+  font-size: 1.5rem;
+  box-shadow: none;
+}
+
+#screen-waiting-room .wr-nav-icon--leaderboard {
+  background: linear-gradient(180deg, #ffb347 0%, #e67e22 100%);
+}
+
+#screen-waiting-room .wr-nav-label {
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+#screen-waiting-room .wr-nav-item.is-active .wr-nav-label {
+  font-weight: 700;
+  color: #fff;
+}

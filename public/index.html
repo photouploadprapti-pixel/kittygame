@@ -15,7 +15,11 @@
   <link rel="stylesheet" href="/css/auth-signup.css?v=1" />
   <link rel="stylesheet" href="/css/auth-reset.css?v=1" />
   <link rel="stylesheet" href="/css/auth-verify.css?v=1" />
-  <link rel="stylesheet" href="/css/home.css?v=8" />
+  <link rel="stylesheet" href="/css/home.css?v=9" />
+  <link rel="stylesheet" href="/css/hub.css?v=1" />
+  <link rel="stylesheet" href="/css/create-game.css?v=1" />
+  <link rel="stylesheet" href="/css/waiting-room.css?v=1" />
+  <link rel="stylesheet" href="/css/leaderboard.css?v=1" />
 </head>
 <body>
   <div id="app">
@@ -208,8 +212,271 @@
           </nav>
         </div>
       </main>
-      <span class="home-sr-only" id="lobby-balance" aria-hidden="true">1,000</span>
-      <span class="home-sr-only" id="lobby-seated" aria-hidden="true">0/9 seated</span>
+      <span class="home-sr-only" id="menu-balance" aria-hidden="true">1,000</span>
+    </section>
+
+    <section id="screen-hub" class="screen screen-hub">
+      <div class="home-scene-bg" aria-hidden="true"></div>
+      <div class="home-bokeh" aria-hidden="true"></div>
+      <div class="home-floor-decor" aria-hidden="true"></div>
+      <div class="home-decor" aria-hidden="true">
+        <span class="home-chip home-chip--1"></span>
+        <span class="home-chip home-chip--2"></span>
+        <span class="home-chip home-chip--3"></span>
+        <span class="home-chip home-chip--4"></span>
+      </div>
+      <div class="hub-layout">
+        <header class="hub-topbar">
+          <img src="/assets/mascot-splash.png?v=3" alt="" width="36" height="36" />
+          <span class="hub-topbar-title">Kitty Poker Club</span>
+          <div class="hub-balance" aria-label="Chip balance">
+            <span class="hub-coin" aria-hidden="true"></span>
+            <span id="hub-balance">10,500</span>
+          </div>
+        </header>
+
+        <div class="hub-scroll">
+          <nav class="hub-actions" aria-label="Lobby actions">
+            <button type="button" class="hub-action-btn" id="btn-hub-quick-play">Quick Play</button>
+            <button type="button" class="hub-action-btn" id="btn-hub-create-game">Create Game</button>
+            <button type="button" class="hub-action-btn" id="btn-hub-join-game">Join Game</button>
+          </nav>
+
+          <section class="hub-section" aria-labelledby="hub-featured-title">
+            <h2 class="hub-section-title" id="hub-featured-title">Featured Tables</h2>
+            <ul class="hub-list" id="hub-featured-list">
+              <li>
+                <button type="button" class="hub-list-item hub-table-btn" data-game-type="Texas Hold'em" data-buy-in-label="35k" data-buy-in="35000" data-current="2" data-max="6">
+                  <span class="hub-list-item-text">Texas Hold'em<br />2/6 players</span>
+                  <span class="hub-list-item-stake"><span class="hub-coin" aria-hidden="true"></span>35 M</span>
+                </button>
+              </li>
+              <li>
+                <button type="button" class="hub-list-item hub-table-btn" data-game-type="Texas Hold'em" data-buy-in-label="40k" data-buy-in="40000" data-current="2" data-max="6">
+                  <span class="hub-list-item-text">Texas Hold'em<br />2/6 players</span>
+                  <span class="hub-list-item-stake"><span class="hub-coin" aria-hidden="true"></span>40 M</span>
+                </button>
+              </li>
+              <li>
+                <button type="button" class="hub-list-item hub-table-btn" data-game-type="Texas Hold'em" data-buy-in-label="15k" data-buy-in="15000" data-current="2" data-max="6">
+                  <span class="hub-list-item-text">Texas Hold'em<br />2/6 players</span>
+                  <span class="hub-list-item-stake"><span class="hub-coin" aria-hidden="true"></span>15 M</span>
+                </button>
+              </li>
+            </ul>
+          </section>
+
+          <section class="hub-section" aria-labelledby="hub-tourney-title">
+            <h2 class="hub-section-title" id="hub-tourney-title">Upcoming Tournaments</h2>
+            <ul class="hub-list">
+              <li class="hub-list-item">
+                <span class="hub-list-item-text">High Roller Tourney<br />Daily · 7:00 PM</span>
+                <span class="hub-list-item-stake"><span class="hub-coin" aria-hidden="true"></span>50 M</span>
+              </li>
+            </ul>
+          </section>
+        </div>
+
+        <footer class="hub-friends">
+          <h2 class="hub-friends-title">Friends Online</h2>
+          <div class="hub-friends-row">
+            <div class="hub-friend">
+              <div class="hub-friend-avatar" aria-hidden="true">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+              </div>
+              <span class="hub-friend-name">Lisa</span>
+            </div>
+            <div class="hub-friend">
+              <div class="hub-friend-avatar" aria-hidden="true">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+              </div>
+              <span class="hub-friend-name">John</span>
+            </div>
+            <div class="hub-friend">
+              <div class="hub-friend-avatar" aria-hidden="true">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+              </div>
+              <span class="hub-friend-name">Nina</span>
+            </div>
+          </div>
+        </footer>
+      </div>
+      <span class="home-sr-only" id="hub-seated" aria-hidden="true">0/9 seated</span>
+    </section>
+
+    <section id="screen-create-game" class="screen screen-create-game">
+      <div class="cg-scene" aria-hidden="true"></div>
+      <div class="cg-scene-bokeh" aria-hidden="true"></div>
+      <div class="cg-layout">
+        <header class="cg-topbar">
+          <button type="button" class="cg-topbar-back" id="btn-create-back" aria-label="Back">←</button>
+          <h1 class="cg-topbar-title">Create Game</h1>
+          <div class="cg-topbar-actions">
+            <button type="button" class="cg-topbar-icon cg-topbar-icon--bell" id="btn-create-notify" aria-label="Notifications">🔔</button>
+            <button type="button" class="cg-topbar-icon cg-topbar-icon--chat" id="btn-create-chat" aria-label="Chat">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+            </button>
+            <button type="button" class="cg-topbar-close" id="btn-create-close" aria-label="Close">✕</button>
+          </div>
+        </header>
+
+        <div class="cg-body">
+          <form class="cg-form-panel" id="form-create-game" novalidate>
+            <div class="cg-field">
+              <label class="cg-label" for="create-game-type">Game Type</label>
+              <div class="cg-select-wrap">
+                <select class="cg-select" id="create-game-type" name="gameType">
+                  <option value="holdem" selected>Texas Hold'em</option>
+                  <option value="plo">Pot Limit Omaha</option>
+                </select>
+              </div>
+            </div>
+            <div class="cg-field">
+              <label class="cg-label" for="create-buy-in">Buy In Amount</label>
+              <div class="cg-select-wrap">
+                <select class="cg-select" id="create-buy-in" name="buyIn">
+                  <option value="5000">5,000 chips</option>
+                  <option value="10000" selected>10,000 chips</option>
+                  <option value="25000">25,000 chips</option>
+                  <option value="50000">50,000 chips</option>
+                </select>
+              </div>
+            </div>
+            <div class="cg-field">
+              <label class="cg-label" for="create-max-players">Max Players</label>
+              <div class="cg-select-wrap">
+                <select class="cg-select" id="create-max-players" name="maxPlayers">
+                  <option value="2">2 Players</option>
+                  <option value="4">4 Players</option>
+                  <option value="6" selected>6 Players</option>
+                  <option value="9">9 Players</option>
+                </select>
+              </div>
+            </div>
+            <div class="cg-field cg-privacy">
+              <span class="cg-label">Game Privacy</span>
+              <div class="cg-radio-row" role="radiogroup" aria-label="Game privacy">
+                <label class="cg-radio">
+                  <input type="radio" name="privacy" value="public" checked />
+                  <span class="cg-radio-dot" aria-hidden="true"></span>
+                  Public
+                </label>
+                <label class="cg-radio">
+                  <input type="radio" name="privacy" value="private" />
+                  <span class="cg-radio-dot" aria-hidden="true"></span>
+                  Private
+                </label>
+              </div>
+            </div>
+          </form>
+
+          <div class="cg-cta-row">
+            <button type="button" class="cg-btn cg-btn--create" id="btn-create-submit">Create Game</button>
+            <button type="button" class="cg-btn cg-btn--cancel" id="btn-create-cancel">Cancel</button>
+          </div>
+        </div>
+
+        <nav class="cg-bottom-nav" aria-label="App navigation">
+          <button type="button" class="cg-nav-item" id="btn-nav-home" data-nav="home">
+            <span class="cg-nav-icon cg-nav-icon--home" aria-hidden="true">🏠</span>
+            <span class="cg-nav-label">Home</span>
+          </button>
+          <button type="button" class="cg-nav-item is-active" id="btn-nav-lobby" data-nav="lobby">
+            <span class="cg-nav-icon cg-nav-icon--lobby" aria-hidden="true">🎰</span>
+            <span class="cg-nav-label">Lobby</span>
+          </button>
+          <button type="button" class="cg-nav-item" id="btn-nav-leaderboard" data-nav="leaderboard">
+            <span class="cg-nav-icon cg-nav-icon--leaderboard" aria-hidden="true">🏆</span>
+            <span class="cg-nav-label">Leaderboard</span>
+          </button>
+        </nav>
+      </div>
+    </section>
+
+    <section id="screen-waiting-room" class="screen screen-waiting-room">
+      <div class="wr-layout">
+        <header class="wr-topbar">
+          <button type="button" class="wr-topbar-back" id="btn-wr-back" aria-label="Back">←</button>
+          <span class="wr-topbar-spacer" aria-hidden="true"></span>
+          <div class="wr-topbar-actions">
+            <button type="button" class="wr-topbar-icon" id="btn-wr-notify" aria-label="Notifications">🔔</button>
+            <button type="button" class="wr-topbar-icon wr-topbar-icon--chat" id="btn-wr-header-chat" aria-label="Chat">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+            </button>
+            <button type="button" class="wr-topbar-close" id="btn-wr-close" aria-label="Close">✕</button>
+          </div>
+        </header>
+
+        <p class="wr-game-banner" id="wr-game-title">Texas Hold'em -10k Buy-In</p>
+        <p class="wr-player-count" id="wr-player-count">4/6 Players</p>
+
+        <div class="wr-players" id="wr-player-list" role="list" aria-label="Players in lobby"></div>
+
+        <div class="wr-chat-area">
+          <div class="wr-chat-scene" aria-hidden="true"></div>
+          <button type="button" class="wr-chat-btn" id="btn-wr-chat-window">Chat Window ...</button>
+        </div>
+
+        <nav class="wr-bottom-nav" aria-label="App navigation">
+          <button type="button" class="wr-nav-item is-active" id="btn-wr-nav-home">
+            <span class="wr-nav-icon wr-nav-icon--home" aria-hidden="true">🏠</span>
+            <span class="wr-nav-label">Home</span>
+          </button>
+          <button type="button" class="wr-nav-item" id="btn-wr-nav-lobby">
+            <span class="wr-nav-icon wr-nav-icon--lobby" aria-hidden="true">🎰</span>
+            <span class="wr-nav-label">Lobby</span>
+          </button>
+          <button type="button" class="wr-nav-item" id="btn-wr-nav-leaderboard">
+            <span class="wr-nav-icon wr-nav-icon--leaderboard" aria-hidden="true">🏆</span>
+            <span class="wr-nav-label">Leaderboard</span>
+          </button>
+        </nav>
+      </div>
+    </section>
+
+    <section id="screen-leaderboard" class="screen screen-leaderboard">
+      <div class="lb-layout">
+        <header class="lb-topbar">
+          <button type="button" class="lb-topbar-back" id="btn-lb-back" aria-label="Back">←</button>
+          <span class="lb-topbar-spacer" aria-hidden="true"></span>
+          <div class="lb-topbar-actions">
+            <button type="button" class="lb-topbar-icon" id="btn-lb-notify" aria-label="Notifications">🔔</button>
+            <button type="button" class="lb-topbar-icon lb-topbar-icon--chat" id="btn-lb-chat" aria-label="Chat">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+            </button>
+            <button type="button" class="lb-topbar-close" id="btn-lb-close" aria-label="Close">✕</button>
+          </div>
+        </header>
+
+        <h1 class="lb-title-banner">Leaderboard</h1>
+
+        <div class="lb-tabs-wrap">
+          <div class="lb-tabs" role="tablist" aria-label="Leaderboard category">
+            <button type="button" class="lb-tab lb-tab--players is-active" id="btn-lb-tab-players" role="tab" aria-selected="true" aria-controls="lb-list">Top Players</button>
+            <button type="button" class="lb-tab lb-tab--clubs" id="btn-lb-tab-clubs" role="tab" aria-selected="false" aria-controls="lb-list">Top Club</button>
+          </div>
+        </div>
+
+        <div class="lb-body">
+          <ul class="lb-list" id="lb-list" role="tabpanel" aria-live="polite"></ul>
+          <div class="lb-scene" aria-hidden="true"></div>
+        </div>
+
+        <nav class="lb-bottom-nav" aria-label="App navigation">
+          <button type="button" class="lb-nav-item" id="btn-lb-nav-home">
+            <span class="lb-nav-icon lb-nav-icon--home" aria-hidden="true">🏠</span>
+            <span class="lb-nav-label">Home</span>
+          </button>
+          <button type="button" class="lb-nav-item" id="btn-lb-nav-lobby">
+            <span class="lb-nav-icon lb-nav-icon--lobby" aria-hidden="true">🎰</span>
+            <span class="lb-nav-label">Lobby</span>
+          </button>
+          <button type="button" class="lb-nav-item is-active" id="btn-lb-nav-leaderboard">
+            <span class="lb-nav-icon lb-nav-icon--leaderboard" aria-hidden="true">🏆</span>
+            <span class="lb-nav-label">Leaderboard</span>
+          </button>
+        </nav>
+      </div>
     </section>
 
     <section id="screen-table" class="screen">

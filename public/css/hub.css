@@ -1,0 +1,236 @@
+/* Lobby hub — Quick Play, tables, tournaments (post–main-menu Play) */
+
+#screen-hub.screen-hub {
+  --hub-header: #4a0660;
+  --hub-btn: #6b2d9e;
+  --hub-btn-glow: #ff4ecd;
+  --hub-card: rgba(55, 18, 88, 0.92);
+  --hub-footer: #0a0018;
+  --hub-gold: #f5c842;
+}
+
+#screen-hub .hub-layout {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+#screen-hub .hub-topbar {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.75rem;
+  background: var(--hub-header);
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+#screen-hub .hub-topbar img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+#screen-hub .hub-topbar-title {
+  flex: 1;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 1.2;
+}
+
+#screen-hub .hub-balance {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+}
+
+#screen-hub .hub-coin {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, #fff6c8 0%, var(--hub-gold) 42%, #c99218 100%);
+  border: 2px solid #ffe88a;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  flex-shrink: 0;
+}
+
+#screen-hub .hub-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.85rem 0.75rem 0.5rem;
+}
+
+#screen-hub .hub-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+#screen-hub .hub-action-btn {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #7a3cb8 0%, var(--hub-btn) 55%, #552080 100%);
+  color: #fff;
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.14s ease,
+    filter 0.14s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#screen-hub .hub-action-btn.is-glow,
+#screen-hub .hub-action-btn:active {
+  background: linear-gradient(180deg, #ff6ee8 0%, var(--hub-btn-glow) 50%, #d42aff 100%);
+  box-shadow:
+    0 0 12px rgba(255, 100, 220, 0.9),
+    0 0 28px rgba(255, 78, 205, 0.55);
+  transform: scale(1.02);
+}
+
+#screen-hub .hub-section {
+  margin-bottom: 0.85rem;
+}
+
+#screen-hub .hub-section-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+#screen-hub .hub-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+#screen-hub .hub-list > li {
+  list-style: none;
+}
+
+#screen-hub .hub-list-item,
+#screen-hub button.hub-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border-radius: 12px;
+  background: var(--hub-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: filter 0.12s ease, transform 0.1s ease;
+}
+
+#screen-hub button.hub-list-item:active {
+  filter: brightness(1.12);
+  transform: scale(0.99);
+}
+
+#screen-hub .hub-list-item-text {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.35;
+  flex: 1;
+  min-width: 0;
+}
+
+#screen-hub .hub-list-item-stake {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--hub-gold);
+  flex-shrink: 0;
+}
+
+#screen-hub .hub-list-item-stake .hub-coin {
+  width: 18px;
+  height: 18px;
+}
+
+#screen-hub .hub-friends {
+  flex-shrink: 0;
+  padding: 0.65rem 0.75rem 0.85rem;
+  background: var(--hub-footer);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
+  z-index: 2;
+}
+
+#screen-hub .hub-friends-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.55rem;
+}
+
+#screen-hub .hub-friends-row {
+  display: flex;
+  justify-content: space-around;
+  gap: 0.5rem;
+}
+
+#screen-hub .hub-friend {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  flex: 1;
+  max-width: 88px;
+}
+
+#screen-hub .hub-friend-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  background: #f2f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+#screen-hub .hub-friend-avatar svg {
+  width: 32px;
+  height: 32px;
+  fill: #9aa0a8;
+}
+
+#screen-hub .hub-friend-name {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.88);
+}
