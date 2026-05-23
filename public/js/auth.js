@@ -56,6 +56,7 @@ export const signUp = async ({ email, password, username }) => {
     password,
     options: {
       data: { display_name: username, username },
+      emailRedirectTo: 'https://kittygamepro.netlify.app/',
     },
   })
 }

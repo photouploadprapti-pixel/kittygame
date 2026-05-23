@@ -133,24 +133,12 @@
             <span>Kitty Poker Club</span>
           </header>
           <div class="auth-form-body">
-            <h2 class="auth-form-title">Verify Your Email</h2>
+            <h2 class="auth-form-title">Check Your Inbox</h2>
             <p class="auth-form-desc">
-              We have sent a 4-digit verification code to <strong id="verify-email-display"></strong>.
-              Please enter it below:
+              We have sent an authentication link to <strong id="verify-email-display"></strong>.
+              Please check your inbox and click the link to verify your email.
             </p>
             <div class="auth-error" id="verify-error" role="alert"></div>
-            <form id="form-verify" novalidate>
-              <div class="auth-otp-row" id="otp-inputs">
-                <input class="auth-otp-digit" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 1" data-otp="0" />
-                <input class="auth-otp-digit" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 2" data-otp="1" />
-                <input class="auth-otp-digit" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 3" data-otp="2" />
-                <input class="auth-otp-digit" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 4" data-otp="3" />
-              </div>
-              <p class="auth-resend">
-                <button type="button" id="btn-resend-code" disabled>Resend Code (<span id="resend-timer">0:45</span>)</button>
-              </p>
-              <button type="submit" class="auth-btn-submit" id="btn-verify">Verify</button>
-            </form>
             <footer class="auth-footer auth-footer--back">
               <button type="button" class="auth-footer-back" id="btn-verify-back-login">Back to Login</button>
             </footer>
